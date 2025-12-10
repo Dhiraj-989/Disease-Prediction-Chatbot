@@ -1,82 +1,74 @@
 ✨ SageMaker + GitHub Repository Setup Guide
 
-This document explains how to clone this repository inside AWS SageMaker, configure SSH authentication, and push notebook updates back to GitHub without entering passwords or tokens.
+This document explains how to clone this repository inside AWS SageMaker Notebook Instance, configure SSH authentication, and save notebooks so that updates sync cleanly to GitHub.
 
-🧰 1. Clone This Repository in SageMaker
+🧰 1. Clone This Repository Inside SageMaker Folder
 
-Open a terminal inside SageMaker and run:
+Always clone into the ~/SageMaker/ directory, since this is where SageMaker Notebook Instances store all notebooks.
+
+Open a terminal:
+
+cd ~/SageMaker
 
 git clone https://github.com/Dhiraj-989/Disease-Prediction-Chatbot.git
 
 cd Disease-Prediction-Chatbot
 
 
-(Optional) Set Git identity:
+Configure Git (first time only):
 
 git config --global user.name "Dhiraj Kumar"
 
 git config --global user.email "your_email@example.com"
 
-
-🔐 2. Configure SSH Authentication (Recommended)
-
-SSH lets SageMaker push to GitHub without passwords/tokens.
-
-2.1 Generate SSH key on SageMaker:
+🔐 2. Configure SSH Authentication (No Passwords Needed)
+2.1 Generate SSH key:
 ssh-keygen -t ed25519 -C "your_email@example.com"
 
 
-Press Enter for the file path
+Press Enter for file path
+Press Enter twice for empty passphrase
 
-Press Enter twice for an empty passphrase
-
-2.2 View the public key:
+2.2 View your public key:
 cat ~/.ssh/id_ed25519.pub
 
-2.3 Add this key to GitHub:
+2.3 Add key to GitHub:
 
 GitHub → Settings → SSH and GPG Keys → New SSH Key
-Paste the key and save.
+Paste the key → Save
 
-2.4 Switch the repo remote from HTTPS → SSH:
+2.4 Switch remote URL to SSH:
 git remote set-url origin git@github.com:Dhiraj-989/Disease-Prediction-Chatbot.git
 
-2.5 First push will ask:
-Are you sure you want to continue connecting (yes/no)? yes
 
+Verify:
 
-After that, SSH works permanently.
-
+git remote -v
 
 📁 3. Notebook Storage in SageMaker
 
-SageMaker stores notebooks under:
+SageMaker Notebook Instances automatically save notebooks inside:
 
-/home/ec2-user/SageMaker/
-
-
-But the GitHub repo exists at:
-
-/home/ec2-user/Disease-Prediction-Chatbot
+~/SageMaker/
 
 
-If a notebook is created in SageMaker, move it into the Git repo:
+So your repo must stay inside this folder:
 
-mv /home/ec2-user/SageMaker/<folder>/Model.ipynb \
-   /home/ec2-user/Disease-Prediction-Chatbot/
-
-
-(Replace file or folder names as needed.)
+/home/ec2-user/SageMaker/Disease-Prediction-Chatbot
 
 
-🚀 4. Pushing Notebook Changes to GitHub
+If a notebook appears in .virtual_documents, ignore it — always open the notebook from the repo folder above.
 
-Always work inside the real Git repo:
+🚀 4. Workflow: Edit Notebooks & Push Changes
 
-cd /home/ec2-user/Disease-Prediction-Chatbot
+Open JupyterLab → navigate to:
+
+~/SageMaker/Disease-Prediction-Chatbot/Model.ipynb
 
 
-Then stage, commit, and push:
+After editing:
+
+cd ~/SageMaker/Disease-Prediction-Chatbot
 
 git add .
 
@@ -85,21 +77,15 @@ git commit -m "Update notebook"
 git push
 
 
-Because SSH is configured:
-
-No username required
-
-No password required
-
-No personal access token required
-
+SSH → No username/password/token required.
 
 🛠 5. Useful Commands
-Find where a notebook is saved:
+Find a notebook file:
 find ~ -name "Model.ipynb"
 
-Check current Git remote:
-git remote -v
+Check which repo is real:
+find ~ -type d -name ".git"
 
-Remove wrong or duplicated repo folders:
-rm -rf <folder-name>
+Remove accidental duplicate directories:
+rm -rf ~/SageMaker/.virtual_documents/Disease-Prediction-Chatbot
+rm -rf ~/Disease-Prediction-Chatbot   # only if duplicated
