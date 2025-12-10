@@ -17,6 +17,7 @@ git config --global user.name "Dhiraj Kumar"
 
 git config --global user.email "your_email@example.com"
 
+
 🔐 2. Configure SSH Authentication (Recommended)
 
 SSH lets SageMaker push to GitHub without passwords/tokens.
@@ -46,6 +47,7 @@ Are you sure you want to continue connecting (yes/no)? yes
 
 After that, SSH works permanently.
 
+
 📁 3. Notebook Storage in SageMaker
 
 SageMaker stores notebooks under:
@@ -65,6 +67,7 @@ mv /home/ec2-user/SageMaker/<folder>/Model.ipynb \
 
 
 (Replace file or folder names as needed.)
+
 
 🚀 4. Pushing Notebook Changes to GitHub
 
@@ -89,6 +92,7 @@ No username required
 No password required
 
 No personal access token required
+
 
 🛠 5. Useful Commands
 Find where a notebook is saved:
