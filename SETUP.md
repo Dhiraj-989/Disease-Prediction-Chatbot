@@ -22,7 +22,9 @@ git config --global user.name "Dhiraj Kumar"
 git config --global user.email "your_email@example.com"
 
 🔐 2. Configure SSH Authentication (No Passwords Needed)
+
 2.1 Generate SSH key:
+
 ssh-keygen -t ed25519 -C "your_email@example.com"
 
 
