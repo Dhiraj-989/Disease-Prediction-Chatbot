@@ -29,6 +29,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 
 
 Press Enter for file path
+
 Press Enter twice for empty passphrase
 
 2.2 View your public key:
