@@ -76,7 +76,9 @@ cd /home/ec2-user/Disease-Prediction-Chatbot
 Then stage, commit, and push:
 
 git add .
+
 git commit -m "Update notebook"
+
 git push
 
 
