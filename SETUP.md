@@ -33,14 +33,17 @@ Press Enter for file path
 Press Enter twice for empty passphrase
 
 2.2 View your public key:
+
 cat ~/.ssh/id_ed25519.pub
 
 2.3 Add key to GitHub:
 
 GitHub → Settings → SSH and GPG Keys → New SSH Key
+
 Paste the key → Save
 
 2.4 Switch remote URL to SSH:
+
 git remote set-url origin git@github.com:Dhiraj-989/Disease-Prediction-Chatbot.git
 
 
@@ -83,12 +86,17 @@ git push
 SSH → No username/password/token required.
 
 🛠 5. Useful Commands
+
 Find a notebook file:
+
 find ~ -name "Model.ipynb"
 
 Check which repo is real:
+
 find ~ -type d -name ".git"
 
 Remove accidental duplicate directories:
+
 rm -rf ~/SageMaker/.virtual_documents/Disease-Prediction-Chatbot
+
 rm -rf ~/Disease-Prediction-Chatbot   # only if duplicated
