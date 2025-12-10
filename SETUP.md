@@ -7,12 +7,14 @@ This document explains how to clone this repository inside AWS SageMaker, config
 Open a terminal inside SageMaker and run:
 
 git clone https://github.com/Dhiraj-989/Disease-Prediction-Chatbot.git
+
 cd Disease-Prediction-Chatbot
 
 
 (Optional) Set Git identity:
 
 git config --global user.name "Dhiraj Kumar"
+
 git config --global user.email "your_email@example.com"
 
 🔐 2. Configure SSH Authentication (Recommended)
